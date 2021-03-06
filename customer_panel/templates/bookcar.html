@@ -1,0 +1,31 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+    <form method="post" action="confirmbookcar">
+         {% csrf_token %}
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Confirm Car Booking</h6>
+                </div>
+                <div class="card-body">
+                  <p class="text-gray-900 p-3 m-0">Start time : {{min}}</p>
+
+                  <p class="text-gray-900 p-3 m-0">Pick Up Location
+                    : {{area}}
+                  </p>
+                  <p class="text-gray-900 p-3 m-0">Till Date-Time
+                    <input type="datetime-local" name="aproxdate" min={{min}}> <!-- not working -->
+                  </p>
+                  <p class="text-gray-900 p-3 m-0">Drop Location
+                  <select name="drop">
+                      {% for z in a %}
+                      <option value="{{z.areaID}}">{{z.areaName}}</option>
+                      {% endfor %}
+                  </select>
+                  </p>
+
+                  <p class="text-gray-900 p-3 m-0"><input type="submit" class="btn btn-primary" name="bookcar" value="book"></p>
+                </div>
+              </div>
+    </form>
+{% endblock %}

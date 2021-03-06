@@ -1,0 +1,38 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+          <div class="card shadow mb-4">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+  {% for t in x%}
+
+                  <tbody>
+                  <tr>
+                      <td><img src="{% static '../static/drimages/' %}{{t.driverPic}}" height="80px" width="110px" alt="" ></td>
+                  </tr>
+
+                  </tbody>
+                </table>
+<div class="card shadow mb-4">
+    <form method="post" action="">
+         {% csrf_token %}
+                <div class="card-body">
+                  <p class="text-gray-900 p-3 m-0">Driver Name  : {{t.driverUname}}</p>
+                  <p class="text-gray-900 p-3 m-0">Contact No. :  {{t.driverCno}}</p>
+                  <p class="text-gray-900 p-3 m-0">Email :  {{t.driverEmail}}</p>
+                  <p class="text-gray-900 p-3 m-0">Licence &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  {{t.driverLicence}}</p>
+                </div>
+    </form>
+</div>
+                                      {% endfor %}
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+{% endblock %}

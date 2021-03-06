@@ -1,0 +1,45 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Drivers</h6>
+              <a href="dsortR">Rate</a>
+              <a href="dsortV">View</a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Image</th>
+                      <th>Fair</th>
+                      <th>Rating</th>
+                      <th>View</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+{% for t in drv %}
+                  <tbody>
+
+                    <tr>
+                      <td>{{t.driverUname}}</td>
+                      <td><img src="{% static '../static/drimages/' %}{{t.driverPic}}" height="80px" width="110px" alt=""></td>
+                      <td>₹ {{t.driverFPH}}/hour</td>
+                      <td>{{t.driverRating}}</td>
+                      <td>{{t.driverVcnt}}</td>
+                      <td><a href="bookdriver?driverID={{t.driverID}}" class="btn btn-success btn-circle btn-lg">Book</a> </td>
+                    </tr>
+
+                  </tbody>
+                    {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+</div>
+{% endblock %}

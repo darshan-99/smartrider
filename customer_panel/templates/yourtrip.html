@@ -1,0 +1,42 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+
+              <a href="dsortR">Rate</a>
+              <a href="dsortV">View</a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>End Date</th>
+                      <th>Amount</th>
+                      <th>Cab Detail</th>
+                      <th>Trip Status</th>
+                    </tr>
+                  </thead>
+{% for t in a %}
+                  <tbody>
+                    <tr>
+                      <td>{{t.cabDOBook}}</td>
+                      <td>{{t.cabEndTime}}</td>
+                      <td>{{t.cabAmount}}</td>
+                      <td>{{t.cabID}}</td>
+                      <td>{{t.cabStatus}}</td>
+                    </tr>
+
+                  </tbody>
+                    {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+</div>
+{% endblock %}

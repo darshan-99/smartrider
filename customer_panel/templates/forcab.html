@@ -1,0 +1,38 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Cab driver</h6>
+              </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Car Name</th>
+                      <th>Driver Name</th>
+                      <th>Fair</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+{% for t in drc %}
+                  <tbody>
+                    <tr>
+                      <td><a href="cstcardetails?carID={{t.carID}}" >{{t.carID}}</a></td>
+                      <td>{{t.driverID}}</td>
+                      <td>{{t.cabFPKm}}/km</td>
+                      <td><a href="bookcab?cabID={{t.cabID}}" class="btn btn-success">Book</a> </td>
+                    </tr>
+
+                  </tbody>
+                    {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+</div>
+{% endblock %}

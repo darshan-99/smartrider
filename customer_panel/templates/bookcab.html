@@ -1,0 +1,18 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+    <form method="post" action="cstconfirmbook">
+         {% csrf_token %}
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Confirm Booking</h6>
+                </div>
+                <div class="card-body">
+                  <p class="text-gray-900 p-3 m-0">Start time : {{now}}</p>
+                  <p class="text-gray-600 p-3 m-0">Till Date-Time
+                  <input type="datetime-local" name="aproxdate"></p>
+                  <p><input type="submit" class="btn btn-success btn-circle btn-lg" name="book" value="book"></p>
+                </div>
+              </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% load static %}
+<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+<ul class="pagination">
+    <li class="paginate_button page-item previous">
+        {% if page.has_previous %}
+            <a href="?page={{page.previous_page_number}}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">previous</a>
+        {% endif %}
+    </li>
+    <li class="paginate_button page-item ">
+        <div class="page-link">Page {{page.number}} of {{page.paginator.num_pages}}</div>
+    </li>
+    <li class="paginate_button page-item next">
+        {% if page.has_next %}
+            <a href="?page={{page.next_page_number}}" class="page-link">next</a>
+        {% endif %}
+    </li>
+
+</ul>
+</div>

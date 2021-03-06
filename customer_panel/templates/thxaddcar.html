@@ -1,0 +1,11 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+<h1>Thanks for Adding Your Car , {{uname}}</h1>
+<p>
+    Car Name : {{cname}} <br>
+    Rate : {{rate}}/hr <br>
+    Number Plate : {{nplate}} <br>
+    In Godown : {{gdn}}
+</p>
+{% endblock %}

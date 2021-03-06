@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <style>#err {display:none;color:red}</style>
+  <title>SB Admin 2 - Register</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+  <form method="POST" action="creg" >
+    {% csrf_token%}
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Customer Register!</h1>
+              </div>
+              <form class="user">
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" id="user" class="form-control form-control-user" name="username" placeholder="User Name" autocomplete="off">
+                    <p id="err">username is already taken!!!</p>
+                  </div>
+                </div>
+                <div style="display:none">
+                    <select id="clist">
+                    {% for l in c_list %}
+                        <option value="{{l}}">{{l}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user" name="firstname" placeholder="First Name" autocomplete="off">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" name="lastname" placeholder="Last Name">
+                  </div>
+                </div>
+                  <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" class="form-control form-control-user" name="password1" id="exampleInputPassword" placeholder="Password">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user" name="password2" id="exampleRepeatPassword" placeholder="Repeat Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="date" class="form-control form-control-user" name="dob" placeholder="DOB">
+                </div>
+
+
+                <div class="radio-group" id="isowner">
+                  <label for="isowner">You Have a Car ? &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio"  name="isowner"  value="Yes" onclick ="openfile(1)">&nbsp;Yes&nbsp;&nbsp;&nbsp;
+                    <input type="radio"  name="isowner"  value="No" onclick="openfile(0)">&nbsp;No
+                </div>
+
+                <div class="form-group" id="opensid" style="display:none" ><hr>
+                    Car Model :
+                    <select name="carmodel">
+                    {% for x in cars %}
+                        <option value="{{x.carID}}">{{x.carName}}</option>
+                    {% endfor %}
+                    </select><br><br>
+                    <input type="text" class="form-control form-control-user" name="fph"  placeholder="Fair per hour" ><br>
+                    <input type="text" class="form-control form-control-user" name="nplate" placeholder="Number Plate">
+                <hr></div><br>
+<script type="text/javascript">
+let user = document.getElementById("user");
+let listOptions = document.querySelectorAll('#clist')
+let errs = document.getElementById("err");
+user.addEventListener("keyup", function(event)
+{
+    for (let i = 0; i <= listOptions.length; i++)
+    {
+        if (listOptions[i].value === user.value)
+        {
+            errs.style.display = "block";
+            return false;
+        }
+        else {
+            errs.style.display = "none";
+            return true;
+        }
+    }
+});
+function openfile(x)
+{
+    if(x==1){
+        document.getElementById("opensid").style.display="block";
+    }
+    else if(x==0){
+        document.getElementById("opensid").style.display="none ";
+    }
+}
+
+
+</script>
+
+                <div class="form-group">
+                    Area : <select name="area" class="btn btn-secondary dropdown-toggle">
+                    {% for t in a %}
+                      <option value="{{t.areaID}}" class="dropdown-item">{{t.areaName}}</option>
+                    {% endfor %}
+                            </select>
+                </div>
+                <div class="form-group">
+                  City : <select name="city" class="btn btn-secondary dropdown-toggle">
+                    {% for x in c %}
+                      <option value="{{x.cityID}}">{{x.cityName}}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" name="address" value="{{address}}" placeholder="Address">
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user" name="mobileno" value="{{mobileno}}" placeholder="Mobile No">
+                  </div>
+                </div>
+
+                <div class="radio-group">
+                  <label for="gender">Gender &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input type="radio"  name="gender"  value="Male">&nbsp;Male&nbsp;&nbsp;&nbsp;
+                    <input type="radio"  name="gender"  value="Female">&nbsp;Female
+                </div>
+
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-user" name="emailid"  placeholder="Email Address">
+                </div>
+                  <input type="submit"  value="Register" class="btn btn-primary btn-user btn-block">
+                <hr>
+                <a href="index.html" class="btn btn-google btn-user btn-block">
+                  <i class="fab fa-google fa-fw"></i> Register with Google
+                </a>
+                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                  <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                </a>
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="customerforgotpass">Forgot Password?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="customerlogin">Already have an account? Login!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+  </form>
+
+</body>
+
+</html>

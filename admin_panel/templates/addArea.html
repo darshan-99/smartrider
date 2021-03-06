@@ -1,0 +1,30 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Area</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_table}}
+                    <tr>
+                        <td>
+                            <input type="submit" value="Add" class="btn btn-success">
+                        </td>
+                    </tr>
+                </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

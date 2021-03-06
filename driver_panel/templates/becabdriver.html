@@ -1,0 +1,41 @@
+{% extends 'driverheader.html' %}
+{% block content %}
+{% load static %}
+{% for t in d%}
+{% if t.driverIsOwner == 'no' %}
+
+<div class="card shadow mb-4">
+    <form method="post" action="confirmcabdriver">
+        {% csrf_token %}
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Be a Cab Driver</h6>
+        </div>
+        <div class="card-body">
+            <div>
+                <label>Select Car : </label>
+                <select name="car">
+                    {% for x in a %}
+                    <option value="{{x.carID}}">{{x.carName}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label>Fair per Hour : </label>
+                <input type="text" name="fair" class="form-control form-control-user">
+            </div>
+            <div>
+                <label>Number Plate : </label>
+                <input type="text" name="nplate" class="form-control form-control-user">
+            </div><br>
+            <div>
+                <input type="submit" class="btn btn-success" name="save" value="Submit">
+            </div>
+
+        </div>
+    </form>
+</div>
+{% else %}
+<h1 class="h3 mb-4 text-gray-800">You are already a cab driver</h1>
+{% endif %}
+{% endfor %}
+{% endblock %}

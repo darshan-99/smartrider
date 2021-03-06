@@ -1,0 +1,18 @@
+{% extends 'driverheader.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+    <form method="post" action="">
+         {% csrf_token %}
+                <div class="card-body">
+                  <p class="text-gray-900 p-3 m-0">Customer Name :  {{name}}</p>
+                  <p class="text-gray-900 p-3 m-0">Start Time :  {{start}}</p>
+                  <p class="text-gray-900 p-3 m-0">End Time :  {{end}}</p>
+                  <p class="text-gray-900 p-3 m-0">Rate per hour :  {{rate}}</p>
+                  <p class="text-gray-900 p-3 m-0">Total :  {{t}}</p>
+                  <a href="driverhome">Go to homepage</a>
+                </div>
+
+    </form>
+</div>
+{% endblock %}

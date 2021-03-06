@@ -1,0 +1,41 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+<h1 style="text-align: center;">CarDetail<b></b></h1>
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Cardetails</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Company</th>
+                      <th>Type</th>
+                      <th>Capacity</th>
+                      <th>Pic</th>
+                    </tr>
+                  </thead>
+  {% for t in cd %}
+
+                  <tbody>
+                    <tr>
+                      <td>{{t.carName}}</td>
+                      <td>{{t.carCompany}}</td>
+                      <td>{{t.carType}}</td>
+                      <td>{{t.carCapacity}}</td>
+                      <td><img src="{% static '../static/carimages/' %}{{t.carPic}}" height="80px" width="110px" alt="" ></td>
+                          {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+{% endblock %}

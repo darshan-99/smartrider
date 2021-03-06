@@ -1,0 +1,38 @@
+{% extends 'godownheader.html' %}
+{% block content %}
+{% load static %}
+
+          <div class="card shadow mb-4">
+
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Customer Name</th>
+                      <th>Photo</th>
+                      <th>Address</th>
+                      <th>Contact No.</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>{{name}}</td>
+                      <td><img src="{% static '../static/cstimages/' %}{{pic}}" height="80px" width="110px" alt="" ></td>
+                      <td>{{address}}</td>
+                      <td>{{cno}}</td>
+                      <td><a href="revertcar?cdID={{carid}}">Give To Owner</a> </td>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+{% endblock %}

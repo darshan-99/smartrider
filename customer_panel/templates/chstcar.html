@@ -1,0 +1,44 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Car Booking</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>End Date</th>
+                      <th>Amount</th>
+                      <th>Pickup location</th>
+                      <th>Drop location</th>
+                      <th>Car Detail</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+{% for t in a %}
+                  <tbody>
+                    <tr>
+                      <td>{{t.carDOBook}}</td>
+                      <td>{{t.carEndTime}}</td>
+                      <td>{{t.carAmount}}</td>
+                      <td>{{t.carPickup}}</td>
+                      <td>{{t.carDrop}}</td>
+                      <td>{{t.cdID}}</td>
+                      <td>{{t.carStatus}}</td>
+                    </tr>
+
+                  </tbody>
+                    {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">City Details</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <a href="addCity" class="btn btn-primary">Add City</a><br><br>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                {% for t in city %}
+
+                <tbody>
+                <tr>
+                    <td>{{t.cityName}}</td>
+                    <td>
+                        <a href="updateCity?cityID={{t.cityID}}">
+                            <img src="{% static '../static/icons/update.png' %}" height="30px" width="30px" alt=""></a>
+                        <a href="deleteCity?cityID={{t.cityID}}">
+                            <img src="{% static '../static/icons/delete.png' %}" height="30px" width="30px" alt="">
+                        </a>
+                    </td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+
+{% endblock %}

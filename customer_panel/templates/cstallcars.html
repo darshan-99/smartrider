@@ -1,0 +1,105 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Your Cars</h6>
+            </div>
+    <form method="post" action="">
+        {% csrf_token %}
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Car Name</th>
+                      <th>Car Number</th>
+                      <th>Godown</th>
+                      <th>Action</th>
+
+                    </tr>
+                  </thead>
+{% for t in a %}
+                  <tbody>
+                  {% if t.cdIsAvailable == 'yes' or t.cdIsAvailable == 'no' %}
+                    <tr>
+                      <td>{{t.carID}}</td>
+                      <td>{{t.cdNumberplate}}</td>
+                      <td>{{t.cdGodown}}</td>
+                      <td><a href="cstrevert?cdID={{t.cdID}}" class="btn btn-info">Revert this car</a></td>
+                    </tr>
+                  {% elif t.cdIsAvailable == 'reverted' %}
+                    <tr>
+                      <td>{{t.carID}}</td>
+                      <td>{{t.cdNumberplate}}</td>
+                      <td>{{t.cdGodown}}</td>
+                      <td><a href="#" class="btn btn-info" data-toggle="modal" data-target="#logoutModal">Reverted</a></td>
+                    </tr>
+                  {% elif t.cdIsAvailable == 'hold' %}
+                    <tr>
+                      <td>{{t.carID}}</td>
+                      <td>{{t.cdNumberplate}}</td>
+                      <td>{{t.cdGodown}}</td>
+                      <td><a href="#" class="btn btn-info" data-toggle="modal" data-target="#holdModal">Hold</a></td>
+                    </tr>
+                  {% elif t.cdIsAvailable == 'given' %}
+                    <tr>
+                      <td>{{t.carID}}</td>
+                      <td>{{t.cdNumberplate}}</td>
+                      <td>{{t.cdGodown}}</td>
+                      <td>Given</td>
+                    </tr>
+                {% endif %}
+
+                  </tbody>
+                    {% endfor %}
+                </table>
+              </div>
+            </div>
+    </form>
+          </div>
+
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Car Revert</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">You had successfully reverted your car. Please collect it from godown mentioned here</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="holdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="holdModalLabel">Car Revert</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Your car is currently in use. You can collect it from godown mentioned here after some time. </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+</form>
+</div>
+{% endblock %}

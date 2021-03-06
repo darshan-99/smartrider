@@ -1,0 +1,35 @@
+{% extends 'customerheader.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+    <form method="post" action="confirmowner">
+        {% csrf_token %}
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Own a Car</h6>
+        </div>
+        <div class="card-body">
+            <div>
+                <label>Select a Car :</label>
+                <select name="car">
+                    {% for t in c %}
+                    <option value="{{t.carID}}">{{t.carName}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label>Enter Rate per hour : </label>
+                <input type="text" name="rate" class="form-control form-control-user">
+            </div>
+            <div>
+                <label>Enter NumberPlate</label>
+                <input type="text" name="nplate" class="form-control form-control-user">
+            </div>
+            <br>
+            <div>
+                <input type="submit" class="btn btn-success" name="owns" value="submit">
+            </div>
+
+        </div>
+</div>
+</form>
+{% endblock %}

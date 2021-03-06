@@ -1,0 +1,40 @@
+{% extends 'driverheader.html' %}
+{% block content %}
+{% load static %}
+<div class="card shadow mb-4">
+
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Aprox End Date</th>
+                      <th>Customer Name</th>
+                      <th>Address</th>
+                      <th>Contact No.</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+{% for t in a %}
+                  <tbody>
+                    <tr>
+                      <td>{{t.cabDOBook}}</td>
+                      <td>{{t.cabAproxEndTime}}</td>
+                      <td>{{t.customerID}}</td>
+                      <td>{{address}}</td>
+                      <td>{{cno}}</td>
+                      <td><a href="cabstarttrip?cabbookID={{t.cabbookID}}">Start</a> </td>
+                      </tr>
+
+                  </tbody>
+                    {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+{% if cbs %}
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Cab Driver</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Driver Name</th>
+                      <th>Car Name</th>
+                      <th>Fair</th>
+                      <th>Numbe Plate</th>
+                      <th>Is Available</th>
+                    </tr>
+                  </thead>
+{% for t in cbs %}
+                  <tbody>
+                    <tr>
+                        <td>{{t.driverID}}</td>
+                        <td>{{t.carID}}</td>
+                        <td>₹ {{t.cabFPKm}}/hour</td>
+                        <td>{{t.cabNumberplate}}</td>
+                        <td>{{t.cabIsAvailable}}</td>
+                  </tbody>
+{% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+{% else %}
+    <center>
+        <img src="{% static '../static/nothing.png' %}" height="300px" width="300px" alt="" >
+        <h6>no data found </h6>
+    </center>
+{% endif %}
+{% endblock %}
